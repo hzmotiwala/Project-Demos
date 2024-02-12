@@ -7,8 +7,8 @@ from sklearn.metrics import mean_squared_error
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 import matplotlib.pyplot as plt
-# from keras.models import Sequential
-# from keras.layers import LSTM, Dense
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
 import numpy as np
 
 def fetch_historical_data(symbol):
