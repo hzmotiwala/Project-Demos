@@ -4,4 +4,4 @@ yfinance
 scikit-learn
 matplotlib
 tensorflow
-
+statsmodels
