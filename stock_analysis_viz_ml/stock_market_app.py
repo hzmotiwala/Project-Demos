@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def fetch_historical_data(symbol):
     # Fetch historical stock market data using yfinance
-    data = yf.download(symbol, start='2020-01-01', end='2022-01-01')['Adj Close']
+    data = yf.download(symbol, start='2022-01-01', end='2024-01-01')['Adj Close']
 
     return data
 
