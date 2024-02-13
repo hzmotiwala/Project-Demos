@@ -4,5 +4,5 @@
 1) stock market app visualization + ml
 https://stock-app-zm.streamlit.app
 
-2) stock market app visualization + ml
+2) LLM ChatGPT-like chatbot
 https://llm-chatbot-zm.streamlit.app
