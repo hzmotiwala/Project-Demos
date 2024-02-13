@@ -171,6 +171,10 @@ def main():
     # Make predictions using the LSTM model
     y_pred_lstm = make_lstm_predictions(lstm_model, X_test)
 
+    # Sort data by date
+    y_test = y_test.sort_index()
+    y_pred = pd.DataFrame(y_pred, index=y_test.index).sort_index()
+
     # Plot actual vs. predicted prices
     fig_lstm, ax_lstm = plt.subplots(figsize=(10, 6))
     ax_lstm.plot(y_test.index, y_test, label="Actual Prices", color='blue')
@@ -183,6 +187,7 @@ def main():
 
     # Display evaluation metrics
     st.write(f"Mean Squared Error (LSTM): {loss}")
+
 
 if __name__ == "__main__":
     main()
