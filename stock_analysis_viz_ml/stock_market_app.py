@@ -106,10 +106,10 @@ def main():
 
     # Add widgets to sidebar
     selected_stock = st.sidebar.selectbox("Select Stock", ["AAPL", "GOOGL", "MSFT", "AMZN"])
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("Prediction Period")
-    st.sidebar.write("Select the number of days for predicting future stock prices.")
-    prediction_period = st.sidebar.slider("Prediction Period (days)", min_value=1, max_value=30, value=7)
+    # st.sidebar.markdown("---")
+    # st.sidebar.subheader("Prediction Period")
+    # st.sidebar.write("Select the number of days for predicting future stock prices.")
+    # prediction_period = st.sidebar.slider("Prediction Period (days)", min_value=1, max_value=30, value=7)
 
     # Display selected stock
     st.write(f"You selected stock: {selected_stock}")
