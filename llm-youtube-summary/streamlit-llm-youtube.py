@@ -8,9 +8,10 @@ from transformers import pipeline
 
 def read_openai_api_key():
     try:
-        secrets = toml.load("secrets.toml")
-        return secrets["openai"]["api_key"]
-        st.write("got to this line")
+        # secrets = toml.load("secrets.toml")
+        #return secrets["openai"]["api_key"]
+        api_key=st.secrets["OPENAI_API_KEY"]
+        return api_key
     except Exception as e:
         st.error(f"Error reading OpenAI API key: {e}")
         return None
