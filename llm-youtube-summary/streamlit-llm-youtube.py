@@ -46,15 +46,12 @@ def summarize_video_content(youtube_url):
                 return summary[0]['summary_text']
             else:
                 st.warning("Failed to fetch transcript. Please check the YouTube URL.")
-                logging.warning("Failed to fetch transcript. Please check the YouTube URL.")
                 return None
         except Exception as e:
             st.error(f"Error summarizing the video content: {e}")
-            logging.error(f"Error summarizing the video content: {e}")
             return None
     else:
         st.warning("OpenAI API key not found.")
-        logging.warning("OpenAI API key not found.")
         return None
 
 
