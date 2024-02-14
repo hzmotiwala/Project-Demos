@@ -40,7 +40,7 @@ def summarize_video_content(youtube_url):
             transcript = get_transcript_from_youtube(youtube_url)
             if transcript:
                 # Load the GPT model for summarization
-                summarization_model = pipeline("summarization")
+                summarization_model = pipeline("summarization", model="facebook/bart-large-cnn")
 
                 # Summarize the transcript
                 summary = summarization_model(transcript, max_length=1000, min_length=100, do_sample=False)
