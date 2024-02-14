@@ -50,13 +50,13 @@ def summarize_video_content(youtube_url):
                 summarization_model = pipeline("summarization", model="facebook/bart-large-cnn")
                 
                 # Split the transcript into smaller chunks
-                chunk_size = 1000  # Adjust the chunk size as needed
+                chunk_size = 3000  # Adjust the chunk size as needed
                 transcript_chunks = [transcript[i:i+chunk_size] for i in range(0, len(transcript), chunk_size)]
                 
                 # Summarize each chunk and concatenate the summaries
                 summaries = []
                 for chunk in transcript_chunks:
-                    summary = summarization_model(chunk, max_length=500, min_length=100, do_sample=False)
+                    summary = summarization_model(chunk, max_length=300, min_length=50, do_sample=False)
                     summaries.append(summary[0]['summary_text'])
                 
                 # Concatenate the summaries of all chunks
