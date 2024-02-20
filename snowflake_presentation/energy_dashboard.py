@@ -6,7 +6,7 @@ import plotly.express as px
 # Function to load data (modify the path to where your dataset is located)
 @st.cache_data
 def load_data():
-    data = pd.read_csv('snowflake_energy.csv', parse_dates=['Date'])
+    data = pd.read_csv('snowflake_presentation/snowflake_energy.csv', parse_dates=['Date'])
     return data
 df = load_data()
 
