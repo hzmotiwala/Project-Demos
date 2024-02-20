@@ -8,7 +8,6 @@ import plotly.express as px
 uploaded_file = st.file_uploader("snowflake_energy.csv")
 
 dataframe = pd.read_csv(uploaded_file)
-@st.cache_data
 df = pd.read_csv(uploaded_file, parse_dates=['Date'])
 
 # @st.cache_data
