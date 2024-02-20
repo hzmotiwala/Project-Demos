@@ -8,9 +8,9 @@ https://llm-chatbot-zm.streamlit.app
 https://llm-youtube-summary-zm.streamlit.app
 
 3) Energy Usage Anomaly Detection Dashboard Sample
-4) https://energy-usage-anomaly-dashboard.streamlit.app
+https://energy-usage-anomaly-dashboard.streamlit.app
 
-5) Stock market app visualization with ML Forecasting and Feature Importance using LinReg, ANOVA, and LSTM Neural Network
+4) Stock market app visualization with ML Forecasting and Feature Importance using LinReg, ANOVA, and LSTM Neural Network
 https://stock-app-zm.streamlit.app
 
 
