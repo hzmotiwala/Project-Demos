@@ -4,7 +4,7 @@ Streamlit sample projects to showcase python development and large language mode
 1) LLM ChatGPT-like chatbot
 https://llm-chatbot-zm.streamlit.app
 
-2) LLM Youtube Summary (less than 7 minute videos. Try a summary of a 5 minute Ted Talk)
+2) LLM Youtube Summary (Try a 5-10 minute Ted Talk)
 https://llm-youtube-summary-zm.streamlit.app
 
 3) Energy Usage Anomaly Detection Dashboard Sample
