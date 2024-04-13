@@ -1,4 +1,5 @@
-### Project Demos via Streamlit, Gradio, and HuggingFace
+### Project Demos via Streamlit, Gradio, and HuggingFace ![image](https://github.com/hzmotiwala/Project-Demos/assets/7186464/cbace9cd-5b90-4283-b336-5f7c2d749090)
+
 Below are some sample projects to showcase python development experience.
 
 1) LLM ChatGPT-like chatbot
