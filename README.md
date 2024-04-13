@@ -17,4 +17,5 @@ https://energy-usage-anomaly-dashboard.streamlit.app
 5) Stock market app visualization with ML Forecasting and Feature Importance using LinReg, ANOVA, and LSTM Neural Network
 https://stock-app-zm.streamlit.app
 
+<img src="https://github.com/hzmotiwala/Project-Demos/assets/7186464/cbace9cd-5b90-4283-b336-5f7c2d749090" alt="drawing" width="200"/>
 
