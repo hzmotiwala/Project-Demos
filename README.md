@@ -1,5 +1,5 @@
-# Streamlit
-Streamlit sample projects to showcase python development and large language model experience
+### Project Demos via Streamlit, Gradio, and HuggingFace
+Below are some sample projects to showcase python development experience.
 
 1) LLM ChatGPT-like chatbot
 https://llm-chatbot-zm.streamlit.app
