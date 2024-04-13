@@ -8,7 +8,7 @@ https://llm-chatbot-zm.streamlit.app
 2) LLM Youtube Summary (Try a 5-10 minute Ted Talk)
 https://llm-youtube-summary-zm.streamlit.app
 
-3) Transcribe Audio/Voice Recording to Text App (Hosted via HuggingFace Spaces)
+3) Transcribe Audio/Voice Recording to Text
 https://huggingface.co/spaces/zanemotiwala/audio-to-text
 
 4) Energy Usage Anomaly Detection Dashboard Sample
