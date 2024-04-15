@@ -9,7 +9,7 @@ https://llm-youtube-summary-zm.streamlit.app
 https://huggingface.co/spaces/zanemotiwala/audio-to-text
 
 3) Image Recoginition and Image Caption App
-https://huggingface.co/spaces/zanemotiwala/audio-to-text](https://huggingface.co/spaces/zanemotiwala/Image-Recognition-and-Generation
+https://huggingface.co/spaces/zanemotiwala/Image-Recognition-and-Generation
 
 4) LLM ChatGPT-like chatbot
 https://llm-chatbot-zm.streamlit.app
