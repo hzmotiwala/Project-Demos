@@ -14,7 +14,7 @@ https://huggingface.co/spaces/zanemotiwala/image-recognition-caption
 https://llm-chatbot-zm.streamlit.app
 
 5) Energy Usage Anomaly Detection Dashboard Sample
-https://energy-usage-anomaly-dashboard.streamlit.app
+https://anomaly-dashboard-zm.streamlit.app
 
 6) Causal Inference Techniques: Propensity Score, DiD, and Matching Pairs
 https://github.com/hzmotiwala/Project-Demos/blob/main/Causal_Inference_Experimentation/Causal_Inference_Techniques.ipynb
