@@ -1,8 +1,7 @@
 ### Welcome to my portfolio of interactive projects!
 Each project is a reflection of my journey in harnessing Python, AI and LLMs to build interacte tools. Please explore these hands-on examples that utilize Streamlit, Gradio, and HuggingFace <img src="https://github.com/hzmotiwala/Project-Demos/assets/7186464/cbace9cd-5b90-4283-b336-5f7c2d749090" alt="drawing" width="20"/>.
 
-1) <span style="vertical-align: middle;">YouTube Video Transcription and Summarization App</span>  
-<img src="https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-06-1024.png" alt="YouTube Logo" width="20" style="vertical-align: middle;"/>  
+1) <span style="vertical-align: middle;">YouTube Video Transcription and Summarization App <img src="https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-06-1024.png" alt="YouTube Logo" width="20" style="vertical-align: middle;"/></span>  
 https://llm-youtube-summary-zm.streamlit.app
 
 2) <span style="vertical-align: middle;">Voice Recognition App</span>  
