@@ -1,2 +1,6 @@
 os
 gradio
+transformers
+torch
+torchaudio
+gradio
