@@ -4,7 +4,7 @@ from transformers import pipeline
 import torch
 
 asr = pipeline(task="automatic-speech-recognition",
-               model="distil-whisper/distil-small.en")
+               model="openai/whisper-tiny.en")
 
 
 # Adjusted function assuming 'asr' expects a file path as input
