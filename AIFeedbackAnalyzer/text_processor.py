@@ -10,8 +10,28 @@ import os
 class TextProcessor:
     def __init__(self):
         self._setup_nltk()
-        self.lemmatizer = WordNetLemmatizer()
-        self.stop_words = set(stopwords.words('english'))
+        
+        # Initialize NLTK components with fallbacks
+        try:
+            self.lemmatizer = WordNetLemmatizer()
+        except:
+            self.lemmatizer = None
+            
+        try:
+            self.stop_words = set(stopwords.words('english'))
+        except:
+            # Fallback to basic English stopwords
+            self.stop_words = set([
+                'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours',
+                'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers',
+                'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves',
+                'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am', 'is', 'are',
+                'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does',
+                'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until',
+                'while', 'of', 'at', 'by', 'for', 'with', 'through', 'during', 'before', 'after',
+                'above', 'below', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again',
+                'further', 'then', 'once'
+            ])
         
         # Add custom stopwords for feedback analysis
         self.stop_words.update([
@@ -22,29 +42,25 @@ class TextProcessor:
     
     def _setup_nltk(self):
         """Download required NLTK data if not present."""
+        import ssl
         try:
-            nltk.data.find('tokenizers/punkt')
-        except LookupError:
-            try:
-                nltk.download('punkt', quiet=True)
-            except:
-                pass
+            _create_unverified_https_context = ssl._create_unverified_context
+        except AttributeError:
+            pass
+        else:
+            ssl._create_default_https_context = _create_unverified_https_context
         
-        try:
-            nltk.data.find('corpora/stopwords')
-        except LookupError:
-            try:
-                nltk.download('stopwords', quiet=True)
-            except:
-                pass
+        nltk_downloads = ['punkt', 'stopwords', 'wordnet', 'punkt_tab']
         
-        try:
-            nltk.data.find('corpora/wordnet')
-        except LookupError:
+        for resource in nltk_downloads:
             try:
-                nltk.download('wordnet', quiet=True)
-            except:
-                pass
+                nltk.data.find(f'tokenizers/{resource}' if resource in ['punkt', 'punkt_tab'] else f'corpora/{resource}')
+            except LookupError:
+                try:
+                    nltk.download(resource, quiet=True)
+                except Exception as e:
+                    print(f"Warning: Could not download NLTK resource {resource}: {e}")
+                    continue
     
     def clean_text(self, text: str) -> str:
         """Clean and normalize a single text string."""
@@ -105,7 +121,13 @@ class TextProcessor:
         # If still only one item and it's very long, try to split by sentences
         if len(feedback_items) == 1 and len(feedback_items[0]) > 1000:
             try:
-                sentences = sent_tokenize(feedback_items[0])
+                try:
+                    sentences = sent_tokenize(feedback_items[0])
+                except:
+                    # Fallback sentence splitting
+                    sentences = re.split(r'[.!?]+', feedback_items[0])
+                    sentences = [s.strip() for s in sentences if s.strip()]
+                
                 # Group sentences into chunks of 2-3 sentences
                 feedback_items = []
                 current_chunk = []
@@ -139,17 +161,29 @@ class TextProcessor:
         """Extract important keywords from text."""
         try:
             # Tokenize and clean
-            tokens = word_tokenize(text.lower())
+            try:
+                tokens = word_tokenize(text.lower())
+            except:
+                # Fallback tokenization
+                tokens = re.findall(r'\b[a-zA-Z]+\b', text.lower())
             
             # Remove stopwords and punctuation
-            keywords = [
-                self.lemmatizer.lemmatize(token) 
-                for token in tokens 
-                if token not in self.stop_words 
-                and token not in string.punctuation
-                and len(token) > 2
-                and token.isalpha()
-            ]
+            keywords = []
+            for token in tokens:
+                if (token not in self.stop_words 
+                    and token not in string.punctuation
+                    and len(token) > 2
+                    and token.isalpha()):
+                    
+                    # Use lemmatizer if available, otherwise use word as-is
+                    if self.lemmatizer:
+                        try:
+                            lemmatized = self.lemmatizer.lemmatize(token)
+                            keywords.append(lemmatized)
+                        except:
+                            keywords.append(token)
+                    else:
+                        keywords.append(token)
             
             # Count frequency and return most common
             from collections import Counter
@@ -166,7 +200,11 @@ class TextProcessor:
         """Extract meaningful phrases from text."""
         try:
             # Tokenize
-            tokens = word_tokenize(text.lower())
+            try:
+                tokens = word_tokenize(text.lower())
+            except:
+                # Fallback tokenization
+                tokens = re.findall(r'\b[a-zA-Z]+\b', text.lower())
             
             # Remove stopwords and punctuation
             clean_tokens = [
@@ -205,15 +243,25 @@ class TextProcessor:
             
             try:
                 # Tokenize and lemmatize
-                tokens = word_tokenize(cleaned.lower())
-                processed_tokens = [
-                    self.lemmatizer.lemmatize(token) 
-                    for token in tokens 
-                    if token not in self.stop_words 
-                    and token not in string.punctuation
-                    and len(token) > 2
-                    and token.isalpha()
-                ]
+                try:
+                    tokens = word_tokenize(cleaned.lower())
+                except:
+                    tokens = re.findall(r'\b[a-zA-Z]+\b', cleaned.lower())
+                
+                processed_tokens = []
+                for token in tokens:
+                    if (token not in self.stop_words 
+                        and token not in string.punctuation
+                        and len(token) > 2
+                        and token.isalpha()):
+                        
+                        if self.lemmatizer:
+                            try:
+                                processed_tokens.append(self.lemmatizer.lemmatize(token))
+                            except:
+                                processed_tokens.append(token)
+                        else:
+                            processed_tokens.append(token)
                 
                 processed_text = ' '.join(processed_tokens)
                 
@@ -243,8 +291,14 @@ class TextProcessor:
     def get_text_statistics(self, text: str) -> Dict[str, Any]:
         """Get basic statistics about the text."""
         try:
-            sentences = sent_tokenize(text)
-            words = word_tokenize(text)
+            try:
+                sentences = sent_tokenize(text)
+                words = word_tokenize(text)
+            except:
+                # Fallback tokenization
+                sentences = re.split(r'[.!?]+', text)
+                sentences = [s.strip() for s in sentences if s.strip()]
+                words = re.findall(r'\b[a-zA-Z]+\b', text)
             
             return {
                 "character_count": len(text),
